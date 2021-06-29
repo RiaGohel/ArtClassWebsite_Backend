@@ -1,0 +1,11 @@
+---
+application:
+  name: "artclasswebsite-backend"
+  project: "ArtClassWebsite"
+  organization: "QoveryCommunity"
+routers:
+- name: "main-artclasswebsite-backend"
+  routes:
+  - application_name: "artclasswebsite-backend"
+    paths:
+    - "/*"
