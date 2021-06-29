@@ -5,6 +5,31 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+
+const mongoose = require("mongoose");
+
+const DB_NAME = "Database_ArtClassWebsite";
+let dbconfig = {};
+try {
+  dbconfig = require("./keys/prod.js");
+} catch (ex) {
+  dbconfig = {
+    mongouri: process.env.ATLAS_URI,
+  };
+}
+let mongouri = dbconfig.mongouri;
+// Connect to moongose
+// Connection to MongoDB
+mongoose.connect(mongouri + "/" + DB_NAME, {
+  useNewUrlParser: true,
+});
+const connection = mongoose.connection;
+connection.once("open", function () {
+  console.log(
+    `MongoDB database connection to db ${DB_NAME} established successfully !`
+  );
+});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
